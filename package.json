@@ -1,0 +1,16 @@
+{
+  "name": "zoomstats",
+  "version": "1.0.0",
+  "description": "Command line tool to extract statistics from zoom logs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andre Wyrwa",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "jsdom": "^13.0.0",
+    "moment": "^2.22.2"
+  }
+}
