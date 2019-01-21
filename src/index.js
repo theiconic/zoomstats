@@ -13,7 +13,7 @@ program
         console.log('analyzing file %s', file);
 
         JSDOM.fromFile(file, {}).then(dom => {
-            const data = parser.parse(dom);
+            const data = parser.parse(dom.window.document);
             const times = analyzer.analyze(data);
 
             console.log(times);

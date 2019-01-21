@@ -1,5 +1,5 @@
-exports.parse = dom => {
-    const transcript = dom.window.document.querySelector('.aside-transcript');
+exports.parse = document => {
+    const transcript = document.querySelector('.aside-transcript');
     const entries = transcript.querySelectorAll('.ts-container');
 
     const transformEntry = entry => {

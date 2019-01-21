@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+
+  "name": "ZoomStats",
+  "description": "Derive statistics from zoom session transcripts",
+  "version": "0.1",
+
+  "background": {
+    "persistent": false,
+    "page": "background.html"
+  },
+
+  "browser_action": {
+    "default_icon": "zoom.png",
+    "default_popup": "popup.html"
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "https://*.zoom.us/*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["https://*.zoom.us/recording/play/*"],
+      "js": ["zoomstats.min.js"]
+    }
+  ]
+}

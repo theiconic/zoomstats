@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <title>ZoomStats</title>
+    <script type="module" src="popup.min.js"></script>
+    <style>
+        .stats {
+            width: 300px;
+        }
+
+        .stats dl {
+            display: flex;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .stats dl:nth-child(2n) {
+            background: #f4f4f4;
+        }
+
+        .stats dt,
+        .stats dd {
+            width: 50%;
+        }
+
+        .stats dt {
+            font-weight: bold;
+            padding-right: 10px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>ZoomStats</h3>
+    <div class="stats">
+    </div>
+</body>
+</html>

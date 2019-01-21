@@ -1,3 +1,7 @@
+dist
+**/key.pem
+
+
 # Logs
 logs
 *.log
