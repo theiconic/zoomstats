@@ -34,3 +34,10 @@ analyzing file ../../../Downloads/Frontend-services catch-up - Zoom.htm
   iprokopenko: 'a few seconds',
   'Luiz Silva Junior': 'a minute' }
 ```
+
+## Available stats
+- **talktime** get the total talk times per speaker
+- **effectiveness** get the percentage of actual talktime vs. total meeting time
+
+## Chrome extension
+This is also available as a chrome extension (currently private for members of theiconic.com.au).
