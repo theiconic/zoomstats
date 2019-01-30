@@ -1,4 +1,7 @@
 exports.parse = document => {
+    const started = document.getElementById('r_meeting_start_time').getAttribute('value');
+    const topic = document.getElementById('r_meeting_topic').getAttribute('value');
+    const id = document.getElementById('recording_id').getAttribute('value');
     const transcript = document.querySelector('.aside-transcript');
     const entries = transcript.querySelectorAll('.ts-container');
 
@@ -13,5 +16,13 @@ exports.parse = document => {
         return data;
     }
 
-    return Array.prototype.map.call(entries, transformEntry);
+    const transcriptData = Array.prototype.map.call(entries, transformEntry);
+
+    return {
+        topic: topic,
+        id: id,
+        started: started,
+        duration: transcriptData[transcriptData.length - 1].end,
+        transcript: transcriptData,
+    };
 }

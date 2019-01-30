@@ -1,6 +1,7 @@
 const Messenger = require('ext-messenger');
 const messenger = new Messenger();
-const analyzer = require('../analyzer/talktime.js');
+const talktime = require('../analyzer/talktime.js');
+const effectiveness = require('../analyzer/effectiveness.js');
 
 const connection = messenger.initConnection('main', () => {return true;});
 
@@ -8,9 +9,12 @@ window.onload = () => {
     setTimeout(function () {
         connection.sendMessage('content_script:main', {
             cmd: 'getTranscript'
-        }).then((response) => {
+        }).then((data) => {
+            const title = document.getElementById('title');
             const container = document.querySelector('.stats');
-            const times = analyzer.analyze(response);
+            const times = talktime.analyze(data);
+
+            title.textContent = data.topic + ' (' + effectiveness.analyze(data) + '%)';
 
             Object.keys(times).map((key) => {
                 let entry = document.createElement('dl');
