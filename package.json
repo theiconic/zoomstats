@@ -10,9 +10,13 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^2.19.0",
+    "d3": "^5.8.0",
+    "d3-cloud": "^1.2.5",
     "ext-messenger": "^3.0.1",
     "jsdom": "^13.0.0",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "split-to-words": "^1.0.2",
+    "stopword": "^0.1.13"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

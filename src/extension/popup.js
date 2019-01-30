@@ -2,6 +2,8 @@ const Messenger = require('ext-messenger');
 const messenger = new Messenger();
 const talktime = require('../analyzer/talktime.js');
 const effectiveness = require('../analyzer/effectiveness.js');
+const words = require('../analyzer/words.js');
+const wordcloud = require('../renderer/html/wordcloud.js');
 
 const connection = messenger.initConnection('main', () => {return true;});
 
@@ -27,6 +29,8 @@ window.onload = () => {
                 entry.appendChild(time);
                 container.appendChild(entry);
             });
+
+            wordcloud.render(document.querySelector('.wordcloud'), words.analyze(data));
         });
     }, 500);
 }

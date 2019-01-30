@@ -5,6 +5,8 @@ const jsdom = require('jsdom');
 const parser = require('./parser/html.js');
 const talktime = require('./analyzer/talktime.js');
 const effectiveness = require('./analyzer/effectiveness.js');
+const words = require('./analyzer/words.js');
+const topwords = require('./renderer/json/topwords.js');
 const { JSDOM } = jsdom;
 
 program
@@ -31,6 +33,19 @@ program
             const data = parser.parse(dom.window.document);
 
             console.log('Meeting effectiveness: ' + effectiveness.analyze(data) + '%');
+        });
+    });
+
+program
+    .command('topwords <file>')
+    .description('Analyze the given recording HTML file for top words')
+    .action(file => {
+        console.log('analyzing file %s', file);
+
+        JSDOM.fromFile(file, {}).then(dom => {
+            const data = parser.parse(dom.window.document);
+
+            console.log(topwords.render(words.analyze(data)));
         });
     });
 
