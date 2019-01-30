@@ -38,6 +38,7 @@ analyzing file ../../../Downloads/Frontend-services catch-up - Zoom.htm
 ## Available stats
 - **talktime** get the total talk times per speaker
 - **effectiveness** get the percentage of actual talktime vs. total meeting time
+- **topwords** get the twenty most used words from the meeting
 
 ## Chrome extension
 This is also available as a chrome extension (currently private for members of theiconic.com.au).
