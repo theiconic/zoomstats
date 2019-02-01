@@ -9,7 +9,7 @@ const byProperty = require('../../sorter/by-property');
 const toArray = require('../../transform/to-array');
 const toKeyValue = require('../../transform/to-key-value');
 
-module.exports = (container, words) => {
+module.exports = (words) => {
     const countedWords = words
         .map(lowercase)
         .filter(excludeStopwords)
@@ -19,7 +19,9 @@ module.exports = (container, words) => {
 
     const getFontSize = (layoutProps) => 16 + layoutProps.size / 2;
 
-    const draw = (words) => d3.select(container).append('svg')
+    const fill = d3.scaleOrdinal(d3.schemeDark2);
+
+    const draw = (container) => (words) => d3.select(container).append('svg')
         .attr('width', layout.size()[0])
         .attr('height', layout.size()[1])
         .append('g')
@@ -27,19 +29,23 @@ module.exports = (container, words) => {
         .selectAll('text')
         .data(words)
         .enter().append('text')
-        .style('font-size', (d) => {return d.size + 'px';})
-        .style('font-family', 'sans-serif')
+        .style('font-size', (d) => d.size + 'px')
+        .style('font-family', 'Impact')
+        .style("fill", (t) => fill(t.text.toLowerCase()))
         .attr('text-anchor', 'middle')
-        .attr('transform', (d) => {return 'translate(' + [d.x, d.y] + ')rotate(' + d.rotate + ')';})
-        .text((d) => {return d.text;});
+        .attr('transform', (d) => 'translate(' + [d.x, d.y] + ')rotate(' + d.rotate + ')')
+        .text((d) => d.text);
 
     const layout = cloud()
         .size([500, 500])
         .words(toArray(countedWords))
-        .padding(5)
-        .font('sans-serif')
+        .padding(1)
+        .font('Impact')
         .fontSize(getFontSize)
-        .on('end', draw);
+        .timeInterval(10);
 
-    layout.start();
+    return (container) => {
+        layout.on('end', draw(container))
+        layout.start();
+    };
 }
