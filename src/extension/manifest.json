@@ -3,7 +3,7 @@
 
   "name": "ZoomStats",
   "description": "Derive statistics from zoom session transcripts",
-  "version": "0.1",
+  "version": "0.2",
 
   "background": {
     "persistent": false,

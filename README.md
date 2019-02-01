@@ -1,6 +1,6 @@
 # zoomstats
 
-A small command line utility to derive statistics from zoom recordings.
+A command line utility and chrome extension to derive statistics from zoom recordings.
 
 ## Setup
 Make sure you run
