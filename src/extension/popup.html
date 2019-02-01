@@ -5,7 +5,7 @@
     <script type="module" src="popup.min.js"></script>
     <style>
         .stats {
-            min-width: 300px;
+            min-width: 500px;
         }
 
         .stats dl {
@@ -28,14 +28,24 @@
             padding-right: 10px;
         }
 
-        h3 {
+        h3,
+        .effectiveness {
             text-align: center;
+        }
+
+        .wordcloud {
+            padding: 10px 0 0 0;
         }
     </style>
 </head>
 
 <body>
     <h3 id="title">ZoomStats</h3>
+    <div class="effectiveness">
+        Meeting effectiveness:
+        <span class="effectivenessValue">...</span>
+        %
+    </div>
     <div class="stats">
     </div>
     <div class="wordcloud">
