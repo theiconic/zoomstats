@@ -14,9 +14,9 @@ window.onload = () => {
         }).then((data) => {
             const title = document.getElementById('title');
             const container = document.querySelector('.stats');
-            const times = talktime.analyze(data);
+            const times = talktime(data);
 
-            title.textContent = data.topic + ' (' + effectiveness.analyze(data) + '%)';
+            title.textContent = data.topic + ' (' + effectiveness(data) + '%)';
 
             Object.keys(times).map((key) => {
                 let entry = document.createElement('dl');
@@ -30,7 +30,7 @@ window.onload = () => {
                 container.appendChild(entry);
             });
 
-            wordcloud.render(document.querySelector('.wordcloud'), words.analyze(data));
+            wordcloud(document.querySelector('.wordcloud'), words(data));
         });
     }, 500);
 }

@@ -1,11 +1,3 @@
-const toWords = require('split-to-words');
+const extractWords = require('./util/extract-words');
 
-exports.analyze = data => {
-    const extractWords = (words, entry) => {
-        return words.concat(toWords(entry.text));
-    }
-
-    const words = data.transcript.reduce(extractWords, []);
-
-    return words;
-}
+module.exports = data => data.transcript.reduce(extractWords, []);
