@@ -2,7 +2,7 @@
 
 const program = require('commander');
 const jsdom = require('jsdom');
-const parser = require('./parser/html.js');
+const parse = require('./parser/html.js');
 const talktime = require('./analyzer/talktime.js');
 const effectiveness = require('./analyzer/effectiveness.js');
 const words = require('./analyzer/words.js');
@@ -16,8 +16,8 @@ program
         console.log('analyzing file %s', file);
 
         JSDOM.fromFile(file, {}).then(dom => {
-            const data = parser.parse(dom.window.document);
-            const times = talktime.analyze(data);
+            const data = parse(dom.window.document);
+            const times = talktime(data);
 
             console.log(times);
         });
@@ -30,9 +30,9 @@ program
         console.log('analyzing file %s', file);
 
         JSDOM.fromFile(file, {}).then(dom => {
-            const data = parser.parse(dom.window.document);
+            const data = parse(dom.window.document);
 
-            console.log('Meeting effectiveness: ' + effectiveness.analyze(data) + '%');
+            console.log('Meeting effectiveness: ' + effectiveness(data) + '%');
         });
     });
 
@@ -43,9 +43,9 @@ program
         console.log('analyzing file %s', file);
 
         JSDOM.fromFile(file, {}).then(dom => {
-            const data = parser.parse(dom.window.document);
+            const data = parse(dom.window.document);
 
-            console.log(topwords.render(words.analyze(data)));
+            console.log(topwords(words(data)));
         });
     });
 
