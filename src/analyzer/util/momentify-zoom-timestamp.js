@@ -1,7 +1,7 @@
 const moment = require('moment');
 
 module.exports = (timestamp) => {
-    if (0 == timestamp) {
+    if (0 === (timestamp || 0)) {
         return moment('1900-01-01 00:00:00');
     }
 
