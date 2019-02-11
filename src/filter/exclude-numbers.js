@@ -1,1 +1,1 @@
-module.exports = (word) => !/^\d+$/.test(word);
+module.exports = (word) => !/^\d+(?:\.\d+)?$/.test(word);

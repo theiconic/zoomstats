@@ -10,7 +10,7 @@ const getAdder = (key) => {
 }
 
 const simpleAdder = (base, time) => {
-    return base + time;
+    return (base || 0) + time;
 }
 
 const getGroupedAdder = key => (base, time) => {
@@ -28,5 +28,5 @@ module.exports = (groupBy) => (talkTimes, entry) => {
     const end = momentify(entry.end);
     const time = end.diff(start);
 
-    return getAdder(entry[groupBy])(talkTimes, time);
+    return getAdder(entry[groupBy])(talkTimes, time || 0);
 }
