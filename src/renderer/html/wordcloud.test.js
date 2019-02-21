@@ -26,13 +26,18 @@ window.HTMLCanvasElement.prototype.getContext = () => {
 };
 
 test('calling wordcloud returns render function', () => {
-    const container = JSDOM.fragment('<div/>').firstChild;
-    const renderer = wordcloud(['abc', 'def', 'ghi']);
-    expect(typeof (renderer)).toBe('function');
-    renderer(container);
-    expect(container.firstChild.nodeName).toBe('svg');
-    expect(container.querySelectorAll('text').length).toBe(3);
-    expect(container.querySelectorAll('text')[0].textContent).toBe('abc');
-    expect(container.querySelectorAll('text')[1].textContent).toBe('def');
-    expect(container.querySelectorAll('text')[2].textContent).toBe('ghi');
+    return new Promise((resolve, reject) => {
+        const container = JSDOM.fragment('<div/>').firstChild;
+        const renderer = wordcloud(['abc', 'def', 'ghi']);
+        expect(typeof (renderer)).toBe('function');
+        renderer(container);
+        setTimeout(() => {
+            expect(container.firstChild.nodeName).toBe('svg');
+            expect(container.querySelectorAll('text').length).toBe(3);
+            expect(container.querySelectorAll('text')[0].textContent).toBe('abc');
+            expect(container.querySelectorAll('text')[1].textContent).toBe('def');
+            expect(container.querySelectorAll('text')[2].textContent).toBe('ghi');
+            resolve();
+        }, 100);
+    });
 });

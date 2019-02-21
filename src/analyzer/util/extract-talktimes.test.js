@@ -102,3 +102,10 @@ test('extract-talktimes without grouping parameter should add talktime', () => {
         text: 'Hello.'
     })).toEqual(510);
 });
+
+test('extract-talktimes should gracefully handle undefined timestamps', () => {
+    expect(extractTalktimes()(undefined, {
+        speaker: 'Unknown Speaker',
+        text: 'Hello.'
+    })).toEqual(0);
+});
