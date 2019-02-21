@@ -13,7 +13,7 @@ const getFontSize = (layoutProps) => 16 + layoutProps.size / 2;
 
 const fill = d3.scaleOrdinal(d3.schemeDark2);
 
-const draw = (container) => (words) => d3.select(container).append('svg')
+const draw = (container, layout) => (words) => d3.select(container).append('svg')
     .attr('width', layout.size()[0])
     .attr('height', layout.size()[1])
     .append('g')
@@ -45,7 +45,7 @@ module.exports = (words) => {
         .timeInterval(10);
 
     return (container) => {
-        layout.on('end', draw(container))
+        layout.on('end', draw(container, layout))
         layout.start();
     };
 }
