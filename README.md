@@ -9,9 +9,7 @@ Make sure you run
 ```bash
 npm install
 ```
-## Usage
-For now, zoomstats is really simple - a proove of concept so to speak.
-
+## Usage (command line)
 You will need to feed it a saved HTML page that contains the
 transcript of the recording. To do so...
 - open the recording in zoom, make sure the transcript display is enabled
@@ -27,20 +25,29 @@ like this:
 
 ```
 analyzing file ../../../Downloads/Frontend-services catch-up - Zoom.htm
-{ 'Andre Wyrwa': '15 minutes',
-  'Henry Geddes': 'a few seconds',
-  'Unknown Speaker': 'a few seconds',
-  'Diego Castano Castiblanco': '9 minutes',
-  Dan: 'a few seconds',
-  'Rira Choi': 'a few seconds',
-  iprokopenko: 'a few seconds',
-  'Luiz Silva Junior': 'a minute' }
+{ 'James T. Kirk': '15 minutes',
+  'Hans Christian Anderssen': 'a few seconds',
+  'James Norrington': 'a few seconds',
+  'Old McDonald': '9 minutes',
+  'Hank Williams': 'a few seconds',
+  'Joshua Frasure': 'a few seconds',
+  'Amanda Brown: 'a few seconds',
+  'Peter Williams': 'a minute' }
 ```
 
-## Available stats
+## Available statistics
 - **talktime** get the total talk times per speaker
 - **effectiveness** get the percentage of actual talktime vs. total meeting time
 - **topwords** get the twenty most used words from the meeting
 
 ## Chrome extension
-This is also available as a chrome extension (currently private for members of theiconic.com.au).
+This also includes a chrome extension exposing the same functionality.
+The extension is currently published privately.
+
+##Contributing
+Please feel free and encouraged to improve this project by
+filing issues and pull requests.
+
+A secondary aim of the project is to serve as a playground
+for functional programming style in JS. PRs must adhere
+to this, please.
