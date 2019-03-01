@@ -44,7 +44,7 @@ analyzing file ../../../Downloads/Frontend-services catch-up - Zoom.htm
 This also includes a chrome extension exposing the same functionality.
 The extension is currently published privately.
 
-##Contributing
+## Contributing
 Please feel free and encouraged to improve this project by
 filing issues and pull requests.
 
