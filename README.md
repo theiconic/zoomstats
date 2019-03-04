@@ -1,4 +1,5 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/bf8ffb6b4dfd2857d615/maintainability)](https://codeclimate.com/repos/5c54a7fc2deb395da200875d/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/bf8ffb6b4dfd2857d615/test_coverage)](https://codeclimate.com/repos/5c54a7fc2deb395da200875d/test_coverage)
 
 # zoomstats
 
