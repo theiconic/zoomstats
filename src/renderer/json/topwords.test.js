@@ -67,7 +67,9 @@ test('topwords should return key-value object of the top 20 words with their cou
         'sheep',
         'donkey',
         'mule',
-        'horse'
+        'horse',
+        'possum',
+        'bee',
     ];
 
     expect(topwords(words)).toEqual({
@@ -89,7 +91,7 @@ test('topwords should return key-value object of the top 20 words with their cou
         'turtle': 2,
         'worm': 2,
         'donkey': 2,
-        'possum': 1,
-        'bee': 1
+        'possum': 2,
+        'bee': 2
     });
 });
