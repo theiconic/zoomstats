@@ -19,6 +19,20 @@ jest.mock('./analyzer/words.js', () => {
     });
 });
 
+jest.mock('./analyzer/collaboration', () => {
+    return jest.fn(() => {
+        return {
+            'Unknown Speaker': {
+                'Joe Test': 400,
+                'all': 150
+            },
+            'Joe Test': {
+                'Unknown Speaker': 1200
+            }
+        };
+    });
+});
+
 jest.mock('./renderer/json/topwords.js', () => {
     return jest.fn(() => {
         return {
@@ -101,6 +115,36 @@ test('index should run topwords', () => {
                 expect(print).toHaveBeenCalledTimes(2);
                 expect(print).toHaveBeenNthCalledWith(1, 'analyzing file %s', 'test.htm')
                 expect(print).toHaveBeenNthCalledWith(2, {"abc": 1, "def": 1, "ghi": 1})
+                resolve();
+            }, 100);
+        });
+    });
+});
+
+test('index should run collaboration', () => {
+    return new Promise((resolve, reject) => {
+        jest.isolateModules(() => {
+            process.argv = ['node', 'index.js', 'collaboration', 'test.htm'];
+            const print = jest.fn();
+
+            jest.doMock('./util/print-to-stdout', () => {
+                return print;
+            });
+
+            require('./index.js');
+
+            setTimeout(() => {
+                expect(print).toHaveBeenCalledTimes(2);
+                expect(print).toHaveBeenNthCalledWith(1, 'analyzing file %s', 'test.htm')
+                expect(print).toHaveBeenNthCalledWith(2, {
+                    'Unknown Speaker': {
+                        'Joe Test': 400,
+                        'all': 150
+                    },
+                    'Joe Test': {
+                        'Unknown Speaker': 1200
+                    }
+                })
                 resolve();
             }, 100);
         });

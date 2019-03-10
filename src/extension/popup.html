@@ -4,26 +4,26 @@
     <title>ZoomStats</title>
     <script type="module" src="popup.min.js"></script>
     <style>
-        .stats {
+        .tabpanels {
             min-width: 500px;
         }
 
-        .stats dl {
+        .talktimes dl {
             display: flex;
             margin: 0;
             padding: 10px;
         }
 
-        .stats dl:nth-child(2n) {
+        .talktimes dl:nth-child(2n) {
             background: #f4f4f4;
         }
 
-        .stats dt,
-        .stats dd {
+        .talktimes dt,
+        .talktimes dd {
             width: 50%;
         }
 
-        .stats dt {
+        .talktimes dt {
             font-weight: bold;
             padding-right: 10px;
         }
@@ -36,6 +36,41 @@
         .wordcloud {
             padding: 10px 0 0 0;
         }
+
+        .tabpanel {
+            display: none;
+        }
+
+        .tabpanel.active {
+            display: block;
+        }
+
+        .tabs {
+            display: flex;
+            flex: 1 1 auto;
+            padding-top: 10px;
+        }
+
+        .tab {
+            border-left: 1px solid #ccc;
+            padding: 2px 5px;
+            user-select: none;
+            flex: 1 1 auto;
+            text-align: center;
+            width: 33%;
+        }
+
+        .tab:first-child {
+            border-left: none;
+        }
+
+        .tab.active {
+            font-weight: bold;
+        }
+
+        .tabpanels {
+            border-top: 1px solid #ccc;
+        }
     </style>
 </head>
 
@@ -46,9 +81,18 @@
         <span class="effectivenessValue">...</span>
         %
     </div>
-    <div class="stats">
+    <div class="tabs">
+        <div class="tab active" data-tab="talktimes">Talk times</div>
+        <div class="tab" data-tab="collaboration">Collaboration</div>
+        <div class="tab" data-tab="wordcloud">Wordcloud</div>
     </div>
-    <div class="wordcloud">
+    <div class="tabpanels">
+        <div class="tabpanel talktimes active">
+        </div>
+        <div class="tabpanel wordcloud">
+        </div>
+        <div class="tabpanel collaboration">
+        </div>
     </div>
 </body>
 </html>

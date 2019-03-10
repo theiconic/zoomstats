@@ -1,4 +1,3 @@
-const moment = require('moment');
 const extractTalkTimesBy = require('./util/extract-talktimes');
 const getObjectMapper = require('../util/object-map');
 const humanizeTalktime = require('./util/humanize-talktime');

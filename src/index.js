@@ -6,6 +6,7 @@ const effectiveness = require('./analyzer/effectiveness.js');
 const words = require('./analyzer/words.js');
 const topwords = require('./renderer/json/topwords.js');
 const parseHtmlFile = require('./util/parse-html-file');
+const collaboration = require('./analyzer/collaboration.js');
 const print = require('./util/print-to-stdout');
 
 program
@@ -40,5 +41,16 @@ program
             print(topwords(words(data)));
         });
     });
+
+program
+    .command('collaboration <file>')
+    .description('Analyze the given recording HTML file for collaboration')
+    .action(file => {
+        print('analyzing file %s', file);
+
+        parseHtmlFile(file).then(data => {
+            print(collaboration(data));
+        });
+    })
 
 program.parse(process.argv);
