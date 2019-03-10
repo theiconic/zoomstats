@@ -1,5 +1,4 @@
-const moment = require('moment');
-const momentify = require('./momentify-zoom-timestamp');
+const getSpeakerTime = require('./get-speaker-time');
 
 const getAdder = (key) => {
     if (key) {
@@ -7,11 +6,11 @@ const getAdder = (key) => {
     }
 
     return simpleAdder;
-}
+};
 
 const simpleAdder = (base, time) => {
     return (base || 0) + time;
-}
+};
 
 const getGroupedAdder = key => (base, time) => {
     if (!base[key]) {
@@ -21,12 +20,8 @@ const getGroupedAdder = key => (base, time) => {
     base[key] += time;
 
     return base;
-}
+};
 
 module.exports = (groupBy) => (talkTimes, entry) => {
-    const start = momentify(entry.start);
-    const end = momentify(entry.end);
-    const time = end.diff(start);
-
-    return getAdder(entry[groupBy])(talkTimes, time || 0);
-}
+    return getAdder(entry[groupBy])(talkTimes, getSpeakerTime(entry) || 0);
+};
