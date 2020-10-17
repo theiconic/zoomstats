@@ -20,8 +20,10 @@
     "stopword": "^0.1.13"
   },
   "devDependencies": {
+    "archiver": "^5.0.2",
     "babel-core": "^6.26.3",
     "babel-loader": "7",
+    "chrome-webstore-upload": "^0.4.2",
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^6.2.1",
     "jest": "^26.5.3",

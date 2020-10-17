@@ -14,14 +14,13 @@ Make sure you run
 npm install
 ```
 ## Usage (command line)
-You will need to feed it a saved HTML page that contains the
-transcript of the recording. To do so...
-- open the recording in zoom, make sure the transcript display is enabled
-- right-click in an empty area of the page and select save page
-- select a location/filename and save the page
-- now run
+You will need to feed it a saved VTT file of the
+transcript of a recording. You can download this file from zoom's
+recording overview page for the recording. You should see an
+'Audio transcript' link on that page, allowing you to download the
+file.
 ```bash
-node src/index.js talktime <path/to/html/file>
+node src/index.js talktime <path/to/vtt/file.vtt>
 ```
 
 You should get a small JSON dump with the (humanized) talk times per speaker,
