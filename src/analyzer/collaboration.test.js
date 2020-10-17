@@ -10,31 +10,31 @@ test('collaboration analyzer should return collaboration by speaker and audience
             [
                 {
                     speaker: 'Unknown Speaker',
-                    start: '00:02:21.240',
-                    end: '00:04:21.750',
+                    start: 141.24,
+                    end: 261.75,
                     text: '...'
                 },
                 {
                     speaker: 'Unknown Speaker',
-                    start: '00:04:45.210',
-                    end: '00:06:45.420',
+                    start: 285.21,
+                    end: 305.42,
                     text: '...'
                 },
                 {
                     speaker: 'Joe Test',
-                    start: '00:06:48.240',
-                    end: '00:09:49.470',
+                    start: 308.24,
+                    end: 589.47,
                     text: '...'
                 }
             ]
     };
 
     expect(collaboration(data)).toEqual({
-        'Unknown Speaker': {
-            'all': 120510
-        },
         'Joe Test': {
-            'Unknown Speaker': 181230
-        }
+            'Unknown Speaker': 281230
+        },
+        'Unknown Speaker': {
+            'all': 120510,
+        },
     });
 });

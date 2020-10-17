@@ -5,7 +5,7 @@ const talktime = require('./analyzer/talktime.js');
 const effectiveness = require('./analyzer/effectiveness.js');
 const words = require('./analyzer/words.js');
 const topwords = require('./renderer/json/topwords.js');
-const parseHtmlFile = require('./util/parse-html-file');
+const parseVttFile = require('./util/parse-vtt-file');
 const collaboration = require('./analyzer/collaboration.js');
 const print = require('./util/print-to-stdout');
 
@@ -15,7 +15,7 @@ program
     .action(file => {
         print('analyzing file %s', file);
 
-        parseHtmlFile(file).then(data => {
+        parseVttFile(file).then(data => {
             print(talktime(data));
         });
     });
@@ -26,7 +26,7 @@ program
     .action(file => {
         print('analyzing file %s', file);
 
-        parseHtmlFile(file).then(data => {
+        parseVttFile(file).then(data => {
             print('Meeting effectiveness: ' + effectiveness(data) + '%');
         });
     });
@@ -37,7 +37,7 @@ program
     .action(file => {
         print('analyzing file %s', file);
 
-        parseHtmlFile(file).then(data => {
+        parseVttFile(file).then(data => {
             print(topwords(words(data)));
         });
     });
@@ -48,9 +48,9 @@ program
     .action(file => {
         print('analyzing file %s', file);
 
-        parseHtmlFile(file).then(data => {
+        parseVttFile(file).then(data => {
             print(collaboration(data));
         });
-    })
+    });
 
 program.parse(process.argv);

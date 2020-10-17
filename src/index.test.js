@@ -43,11 +43,12 @@ jest.mock('./renderer/json/topwords.js', () => {
     });
 });
 
-jest.mock('./util/parse-html-file.js', () => {
+jest.mock('./util/parse-vtt-file.js', () => {
     return () => {
         return new Promise((resolve, reject) => {
             resolve({
-                topic: 'test'
+                topic: 'test',
+                transcript: []
             });
         });
     };

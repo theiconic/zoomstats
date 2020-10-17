@@ -1,7 +1,7 @@
-jest.mock('../parser/html.js', () => {
+jest.mock('../parser/vtt.js', () => {
     return () => {
         return {
-            title: 'test'
+            topic: 'test'
         };
     }
 });
@@ -34,8 +34,6 @@ jest.mock('ext-messenger', () => {
 test('zoomstats.js will initialize messenger connection', () => {
     require('./zoomstats.js');
     expect(connectionName).toBe('main');
-    expect(sentData).toEqual({
-        title: 'test'
-    });
+    expect(sentData).toEqual({});
     expect(sentEmpty).toEqual({});
 });

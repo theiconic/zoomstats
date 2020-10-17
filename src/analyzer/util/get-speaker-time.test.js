@@ -2,15 +2,15 @@ const getSpeakerTime = require('./get-speaker-time');
 
 test('get-speaker-time should return the difference between entry.end and entry.start in ms', () => {
     expect(getSpeakerTime({
-        start: '00:02:21.240',
-        end: '00:04:21.750',
+        start: 141.24,
+        end: 261.75,
     })).toBe(120510);
     expect(getSpeakerTime({
-        start: '00:00:10.240',
-        end: '00:00:10.800',
+        start: 10.24,
+        end: 10.8,
     })).toBe(560);
     expect(getSpeakerTime({
-        start: '00:02:21.240',
-        end: '00:02:21.240',
+        start: 141.24,
+        end: 141.24,
     })).toBe(0);
 });

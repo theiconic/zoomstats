@@ -10,27 +10,27 @@ test('talktime analyzer should return talktimes by speaker', () => {
             [
                 {
                     speaker: 'Unknown Speaker',
-                    start: '00:02:21.240',
-                    end: '00:04:21.750',
+                    start: 141.24,
+                    end: 261.75,
                     text: '...'
                 },
                 {
                     speaker: 'Unknown Speaker',
-                    start: '00:04:45.210',
-                    end: '00:06:45.420',
+                    start: 285.21,
+                    end: 305.42,
                     text: '...'
                 },
                 {
                     speaker: 'Joe Test',
-                    start: '00:06:48.240',
-                    end: '00:09:49.470',
+                    start: 308.24,
+                    end: 589.47,
                     text: '...'
                 }
             ]
     };
 
     expect(talktime(data)).toEqual({
-        'Unknown Speaker': '4 minutes',
-        'Joe Test': '3 minutes'
+        'Joe Test': '5 minutes',
+        'Unknown Speaker': '2 minutes'
     });
 });

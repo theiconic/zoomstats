@@ -3,7 +3,7 @@
 
   "name": "ZoomStats",
   "description": "Derive statistics from zoom session transcripts",
-  "version": "0.3",
+  "version": "0.4.0",
 
   "background": {
     "persistent": false,
@@ -23,7 +23,7 @@
 
   "content_scripts": [
     {
-      "matches": ["https://*.zoom.us/recording/play/*"],
+      "matches": ["https://*.zoom.us/recording/detail*"],
       "js": ["zoomstats.min.js"]
     }
   ]

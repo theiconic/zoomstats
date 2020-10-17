@@ -1,6 +1,6 @@
 {
   "name": "zoomstats",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Command line tool to extract statistics from zoom logs",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,7 @@
     "ext-messenger": "^3.0.1",
     "jsdom": "^13.0.0",
     "moment": "^2.22.2",
+    "node-webvtt": "^1.9.3",
     "split-to-words": "^1.0.2",
     "stopword": "^0.1.13"
   },
@@ -22,9 +23,9 @@
     "babel-core": "^6.26.3",
     "babel-loader": "7",
     "clean-webpack-plugin": "^1.0.0",
-    "copy-webpack-plugin": "^4.6.0",
-    "jest": "^24.3.1",
-    "webpack": "^4.29.0",
-    "webpack-cli": "^3.2.1"
+    "copy-webpack-plugin": "^6.2.1",
+    "jest": "^26.5.3",
+    "webpack": "^5.1.2",
+    "webpack-cli": "^4.0.0"
   }
 }

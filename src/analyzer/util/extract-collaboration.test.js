@@ -4,8 +4,8 @@ test('extract-collaboration should add time by speaker and audience', () => {
     let fn = extractCollaboration();
     expect(fn({}, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual({
         'Unknown Speaker': {
@@ -23,8 +23,8 @@ test('extract-collaboration should add time by speaker and audience', () => {
         }
     }, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual({
         'Unknown Speaker': {
@@ -44,8 +44,8 @@ test('extract-collaboration should add time by speaker and audience', () => {
         }
     }, {
         speaker: 'Joe Test',
-        start: '00:02:21.650',
-        end: '00:02:21.750',
+        start: 141.65,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual({
         'Unknown Speaker': {
@@ -66,8 +66,8 @@ test('extract-collaboration should add time by speaker and audience', () => {
         }
     }, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.650',
-        end: '00:02:21.850',
+        start: 141.65,
+        end: 141.85,
         text: 'Hey,'
     })).toEqual({
         'Unknown Speaker': {

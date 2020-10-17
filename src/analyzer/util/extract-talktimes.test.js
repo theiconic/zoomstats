@@ -3,8 +3,8 @@ const extractTalktimes = require('./extract-talktimes');
 test('extract-talktimes by speaker should add talktimes grouped by speaker', () => {
     expect(extractTalktimes('speaker')({}, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual(
         {
@@ -16,8 +16,8 @@ test('extract-talktimes by speaker should add talktimes grouped by speaker', () 
         'Unknown Speaker': 620
     }, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual(
         {
@@ -29,8 +29,8 @@ test('extract-talktimes by speaker should add talktimes grouped by speaker', () 
         'Joe Test': 620
     }, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual(
         {
@@ -43,8 +43,8 @@ test('extract-talktimes by speaker should add talktimes grouped by speaker', () 
 test('extract-talktimes by text should add talktimes grouped by text', () => {
     expect(extractTalktimes('text')({}, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual(
         {
@@ -56,8 +56,8 @@ test('extract-talktimes by text should add talktimes grouped by text', () => {
         'Hey,': 620
     }, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual(
         {
@@ -69,8 +69,8 @@ test('extract-talktimes by text should add talktimes grouped by text', () => {
         'Hey,': 620
     }, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hello.'
     })).toEqual(
         {
@@ -83,22 +83,22 @@ test('extract-talktimes by text should add talktimes grouped by text', () => {
 test('extract-talktimes without grouping parameter should add talktime', () => {
     expect(extractTalktimes()(0, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual(510);
 
     expect(extractTalktimes()(620, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hey,'
     })).toEqual(1130);
 
     expect(extractTalktimes()(undefined, {
         speaker: 'Unknown Speaker',
-        start: '00:02:21.240',
-        end: '00:02:21.750',
+        start: 141.24,
+        end: 141.75,
         text: 'Hello.'
     })).toEqual(510);
 });

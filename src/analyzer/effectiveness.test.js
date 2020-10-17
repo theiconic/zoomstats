@@ -2,32 +2,32 @@ const effectiveness = require('./effectiveness');
 
 test('effectiveness analyzer should return percentage of effective talktime', () => {
     const data = {
-        duration: '00:02:49.470',
+        duration: 589.47,
         id: 'abc123',
-        started: 'Nov 7, 2018 1:58 PM Canberra, Melbourne, Sydney',
+        started: 0.0,
         topic: 'Some Zoom Recording',
         transcript:
             [
                 {
                     speaker: 'Unknown Speaker',
-                    start: '00:02:21.240',
-                    end: '00:04:21.750',
+                    start: 141.24,
+                    end: 261.75,
                     text: '...'
                 },
                 {
                     speaker: 'Unknown Speaker',
-                    start: '00:04:45.210',
-                    end: '00:06:45.420',
+                    start: 285.21,
+                    end: 405.24,
                     text: '...'
                 },
                 {
                     speaker: 'Joe Test',
-                    start: '00:06:48.240',
-                    end: '00:09:49.470',
+                    start: 408.24,
+                    end: 589.47,
                     text: '...'
                 }
             ]
     };
 
-    expect(effectiveness(data)).toBe(248.98);
+    expect(effectiveness(data)).toBe(71.55);
 });

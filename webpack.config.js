@@ -31,9 +31,11 @@ var config = {
         new CleanWebpackPlugin(['dist']),
 
         // This also watches the folder in watch mode.
-        new CopyWebpackPlugin([{
-            from: './src/extension' // my todo: ignore some stuff...
-        }])
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: './src/extension' // my todo: ignore some stuff...
+            }]
+        })
     ],
 
     module: {
