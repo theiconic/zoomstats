@@ -4,6 +4,7 @@
   "description": "Command line tool to extract statistics from zoom logs",
   "main": "index.js",
   "scripts": {
+    "build-extension": "node buildExtension.js",
     "test": "jest"
   },
   "author": "Andre Wyrwa",

@@ -1,19 +1,17 @@
-const d3 = require('d3');
+const { scaleOrdinal, schemeDark2, select } = require('d3');
 const cloud = require('d3-cloud');
 const lowercase = require('../../transform/lowercase');
 const excludeStopwords = require('../../filter/exclude-stopwords');
 const excludeNumbers = require('../../filter/exclude-numbers');
 const minlength = require('../../filter/minlength');
 const countWords = require('../../transform/count-words');
-const byProperty = require('../../sorter/by-property');
 const toArray = require('../../transform/to-array');
-const toKeyValue = require('../../transform/to-key-value');
 
 const getFontSize = (layoutProps) => 16 + layoutProps.size / 2;
 
-const fill = d3.scaleOrdinal(d3.schemeDark2);
+const fill = scaleOrdinal(schemeDark2);
 
-const draw = (container, layout) => (words) => d3.select(container).append('svg')
+const draw = (container, layout) => (words) => select(container).append('svg')
     .attr('width', layout.size()[0])
     .attr('height', layout.size()[1])
     .append('g')

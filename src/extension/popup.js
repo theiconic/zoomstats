@@ -1,5 +1,4 @@
 const Messenger = require('ext-messenger');
-const messenger = new Messenger();
 const talktime = require('../analyzer/talktime.js');
 const effectiveness = require('../analyzer/effectiveness.js');
 const words = require('../analyzer/words.js');
@@ -7,6 +6,7 @@ const wordcloud = require('../renderer/html/wordcloud.js');
 const collaboration = require('../analyzer/collaboration.js');
 const collabChord = require('../renderer/html/collaboration-chord.js');
 
+const messenger = new Messenger();
 const connection = messenger.initConnection('main', () => {return true;});
 
 const buildSpeakerName = (name) => {

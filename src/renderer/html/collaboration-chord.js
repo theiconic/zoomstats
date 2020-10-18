@@ -1,7 +1,7 @@
-const d3 = require('d3');
+const { schemeDark2, scaleOrdinal, select, ribbon, arc, descending } = require('d3');
 const d3Chord = require('./util/d3-chord');
 
-const fill = d3.scaleOrdinal(d3.schemeDark2);
+const fill = scaleOrdinal(schemeDark2);
 
 const addGradients = (svg, chords, innerRadius) => {
     var grads = svg.append('defs').selectAll('linearGradient')
@@ -45,7 +45,7 @@ const addGradients = (svg, chords, innerRadius) => {
 
 const draw = (container, chords, names) => {
     const innerRadius = 200;
-    var svg = d3.select(container)
+    var svg = select(container)
         .append('svg')
         .attr('width', 500)
         .attr('height', 500)
@@ -68,7 +68,7 @@ const draw = (container, chords, names) => {
         .enter()
         .append('path')
         .attr('class', 'chord')
-        .attr('d', d3.ribbon().radius(innerRadius))
+        .attr('d', ribbon().radius(innerRadius))
         .style('fill', function(d){
             return 'url(#chordGradient-' + d.source.index + '-' + d.target.index + ')';
         })
@@ -90,13 +90,13 @@ const draw = (container, chords, names) => {
     group.append('path')
         .style('fill', (d) => fill(d.index))
         .style('stroke', 'white')
-        .attr('d', d3.arc().innerRadius(innerRadius).outerRadius(innerRadius + 10))
+        .attr('d', arc().innerRadius(innerRadius).outerRadius(innerRadius + 10))
         .each(function(d,i) {
             //Search pattern for everything between the start and the first capital L
             const firstArcSection = /(^.+?)L/;
 
             //Grab everything up to the first Line statement
-            let newArc = firstArcSection.exec(d3.select(this).attr('d'))[1];
+            let newArc = firstArcSection.exec(select(this).attr('d'))[1];
             //Replace all the comma's so that IE can handle it
             newArc = newArc.replace(/,/g , ' ');
 
@@ -132,7 +132,7 @@ module.exports = (data) => {
 
     const chords = d3Chord()
         .padAngle(0.1)
-        .sortChords(d3.descending)
+        .sortChords(descending)
         (matrix);
 
     return (container) => {

@@ -1,6 +1,9 @@
 const fs = require('fs');
 const archiver = require('archiver');
 const process = require('process');
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config.js');
+
 // see https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate%20Google%20API%20keys.md
 const webStore = require('chrome-webstore-upload')({
     extensionId: process.env.ZOOMSTATS_EXTENSION_ID,
@@ -9,7 +12,9 @@ const webStore = require('chrome-webstore-upload')({
     refreshToken: process.env.CWS_REFRESH_TOKEN
 });
 
-const packageExtension = function () {
+const packageExtension = () => {
+    console.info('Packaging extension');
+
     return new Promise((resolve, reject) => {
         const output = fs.createWriteStream(__dirname + '/dist/zoomstats.zip');
         const zip = archiver('zip');
@@ -30,11 +35,9 @@ const packageExtension = function () {
     });
 };
 
-packageExtension().then(uploadExtension).catch(function (error) {
-    console.log(error);
-});
+const uploadExtension = () => {
+    console.info('Uploading extension');
 
-function uploadExtension() {
     const extensionSource = fs.createReadStream('./dist/zoomstats.zip');
 
     webStore.uploadExisting(extensionSource).then(res => {
@@ -51,3 +54,30 @@ function uploadExtension() {
         process.exit(1);
     });
 }
+
+webpack(webpackConfig, (err, stats) => {
+    if (err) {
+        console.error(err.stack || err);
+
+        if (err.details) {
+            console.error(err.details);
+        }
+
+        return;
+    }
+
+    const info = stats.toJson();
+
+    if (stats.hasErrors()) {
+        console.error(info.errors);
+        return;
+    }
+
+    if (stats.hasWarnings()) {
+//        console.warn(info.warnings);
+    }
+
+    packageExtension().then(uploadExtension).catch(function (error) {
+        console.error(error);
+    });
+});
