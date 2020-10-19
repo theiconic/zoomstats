@@ -16,5 +16,6 @@ module.exports = {
     ],
     collectCoverage: true,
     coverageDirectory: 'coverage',
-    testURL: 'http://localhost'
+    testURL: 'http://localhost',
+    setupFilesAfterEnv: ['./jest.setup.js'],
 }

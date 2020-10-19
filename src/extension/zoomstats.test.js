@@ -34,6 +34,11 @@ jest.mock('ext-messenger', () => {
 test('zoomstats.js will initialize messenger connection', () => {
     require('./zoomstats.js');
     expect(connectionName).toBe('main');
-    expect(sentData).toEqual({});
-    expect(sentEmpty).toEqual({});
+    expect(sentData).toEqual({
+        error: "no-transcript-url",
+    });
+    expect(sentEmpty).toEqual({
+        error: 'unsupported-command',
+        command: 'somethingElse'
+    });
 });

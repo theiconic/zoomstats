@@ -1,7 +1,11 @@
 {
   "name": "zoomstats",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Command line tool to extract statistics from zoom logs",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/theiconic/zoomstats.git"
+  },
   "main": "index.js",
   "scripts": {
     "build-extension": "node buildExtension.js",
@@ -11,25 +15,24 @@
   "author": "Andre Wyrwa",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.19.0",
+    "commander": "^6.1.0",
     "d3": "^5.8.0",
     "d3-cloud": "^1.2.5",
-    "ext-messenger": "^3.0.1",
-    "jsdom": "^13.0.0",
-    "moment": "^2.22.2",
+    "ext-messenger": "^3.0.2",
+    "moment": "^2.29.1",
     "node-webvtt": "^1.9.3",
     "split-to-words": "^1.0.2",
-    "stopword": "^0.1.13"
+    "stopword": "^1.0.3"
   },
   "devDependencies": {
     "archiver": "^5.0.2",
-    "babel-core": "^6.26.3",
-    "babel-loader": "7",
+    "babel-loader": "^8.1.0",
     "chrome-webstore-upload": "^0.4.2",
-    "clean-webpack-plugin": "^1.0.0",
+    "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.2.1",
-    "jest": "^26.5.3",
-    "webpack": "^5.1.2",
-    "webpack-cli": "^4.0.0"
+    "jest": "^26.6.0",
+    "jest-chrome": "^0.7.0",
+    "jsdom": "^16.4.0",
+    "webpack": "^5.1.3"
   }
 }

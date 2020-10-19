@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var productionMode = true;
@@ -28,7 +28,7 @@ var config = {
             }
         }),
 
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(),
 
         // This also watches the folder in watch mode.
         new CopyWebpackPlugin({

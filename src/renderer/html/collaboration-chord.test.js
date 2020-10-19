@@ -1,6 +1,4 @@
 const chord = require('./collaboration-chord');
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
 
 window.HTMLCanvasElement.prototype.getContext = () => {
     return {
