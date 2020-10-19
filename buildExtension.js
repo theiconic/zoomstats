@@ -35,26 +35,6 @@ const packageExtension = () => {
     });
 };
 
-const uploadExtension = () => {
-    console.info('Uploading extension');
-
-    const extensionSource = fs.createReadStream('./dist/zoomstats.zip');
-
-    webStore.uploadExisting(extensionSource).then(res => {
-        console.log('Successfully uploaded the ZIP');
-
-        webStore.publish().then(res => {
-            console.log('Successfully published the newer version');
-        }).catch((error) => {
-            console.log(`Error while publishing uploaded extension: ${error}`);
-            process.exit(1);
-        });
-    }).catch((error) => {
-        console.log(`Error while uploading ZIP: ${error}`);
-        process.exit(1);
-    });
-}
-
 webpack(webpackConfig, (err, stats) => {
     if (err) {
         console.error(err.stack || err);
@@ -77,7 +57,9 @@ webpack(webpackConfig, (err, stats) => {
 //        console.warn(info.warnings);
     }
 
-    packageExtension().then(uploadExtension).catch(function (error) {
+    packageExtension().then(() => {
+        console.info('done');
+    }).catch(function (error) {
         console.error(error);
     });
 });

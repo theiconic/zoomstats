@@ -3,21 +3,34 @@
 
   "name": "ZoomStats",
   "description": "Derive statistics from zoom session transcripts",
-  "version": "0.4.0",
+  "version": "0.5.0",
+
+  "icons": {
+    "32": "icon/enabled_32.png",
+    "64": "icon/enabled_64.png",
+    "128": "icon/enabled_128.png",
+    "256": "icon/enabled.png"
+  },
 
   "background": {
     "persistent": false,
     "page": "background.html"
   },
 
-  "browser_action": {
-    "default_icon": "zoom.png",
+  "page_action": {
+    "default_icon": {
+      "32": "icon/disabled_32.png",
+      "64": "icon/disabled_64.png",
+      "128": "icon/disabled_128.png",
+      "256": "icon/disabled.png"
+    },
+    "default_title": "Zoom Stats",
     "default_popup": "popup.html"
   },
 
   "permissions": [
     "activeTab",
-    "tabs",
+    "declarativeContent",
     "https://*.zoom.us/*"
   ],
 

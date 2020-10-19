@@ -4,7 +4,7 @@
     <title>ZoomStats</title>
     <script type="module" src="popup.min.js"></script>
     <style>
-        .tabpanels {
+        .main {
             min-width: 500px;
         }
 
@@ -71,28 +71,92 @@
         .tabpanels {
             border-top: 1px solid #ccc;
         }
+
+        .loading {
+            text-align: center;
+            height: 8em;
+            position: relative;
+        }
+
+        .loader,
+        .loader:before,
+        .loader:after {
+            background: #000000;
+            animation: load1 1s infinite ease-in-out;
+            width: 1em;
+            height: 2em;
+        }
+        .loader {
+            color: #000000;
+            text-indent: -9999em;
+            position: absolute;
+            font-size: 6px;
+            transform: translateZ(0);
+            animation-delay: -0.16s;
+            left: 50%;
+            top: 6em;
+            margin-left: -0.5em;
+        }
+        .loader:before,
+        .loader:after {
+            position: absolute;
+            top: 0;
+            content: '';
+        }
+        .loader:before {
+            left: -1.5em;
+            animation-delay: -0.32s;
+        }
+        .loader:after {
+            left: 1.5em;
+        }
+        @keyframes load1 {
+            0%,
+            80%,
+            100% {
+                box-shadow: 0 0;
+                height: 2em;
+            }
+            40% {
+                box-shadow: 0 -2em;
+                height: 3em;
+            }
+        }
+
+
     </style>
 </head>
 
 <body>
     <h3 id="title">ZoomStats</h3>
-    <div class="effectiveness">
-        Meeting effectiveness:
-        <span class="effectivenessValue">...</span>
-        %
-    </div>
-    <div class="tabs">
-        <div class="tab active" data-tab="talktimes">Talk times</div>
-        <div class="tab" data-tab="collaboration">Collaboration</div>
-        <div class="tab" data-tab="wordcloud">Wordcloud</div>
-    </div>
-    <div class="tabpanels">
-        <div class="tabpanel talktimes active">
+    <main class="main">
+        <div class="loading">
+            <div class="loader"></div>
+            ...analyzing...
         </div>
-        <div class="tabpanel wordcloud">
+        <div class="error" style="display: none;">
+            Could not load transcript.
         </div>
-        <div class="tabpanel collaboration">
+        <div class="results" style="display: none;">
+            <div class="effectiveness">
+                Meeting effectiveness:
+                <span class="effectivenessValue">...</span>
+                %
+            </div>
+            <div class="tabs">
+                <div class="tab active" data-tab="talktimes">Talk times</div>
+                <div class="tab" data-tab="collaboration">Collaboration</div>
+                <div class="tab" data-tab="wordcloud">Wordcloud</div>
+            </div>
+            <div class="tabpanels">
+                <div class="tabpanel talktimes active">
+                </div>
+                <div class="tabpanel wordcloud">
+                </div>
+                <div class="tabpanel collaboration">
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>

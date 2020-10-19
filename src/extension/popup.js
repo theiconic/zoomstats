@@ -33,6 +33,7 @@ const buildSpeaker = (name, time) => {
 
 const renderPopup = (data) => {
     const statsDom = document.querySelector('.talktimes');
+    const resultsDom = document.querySelector('.results');
     const times = talktime(data);
 
     document.getElementById('title').textContent = data.topic;
@@ -44,13 +45,29 @@ const renderPopup = (data) => {
 
     wordcloud(words(data))(document.querySelector('.wordcloud'));
     collabChord(collaboration(data))(document.querySelector('.collaboration'));
+
+    resultsDom.setAttribute('style', '');
 };
+
+const renderError = (error) => {
+    const errorDom = document.querySelector('.error');
+    errorDom.innerHTML = 'Failed to load transcript.';
+    errorDom.setAttribute('style', '');
+}
 
 window.onload = () => {
     setTimeout(function () {
         connection.sendMessage('content_script:main', {
             cmd: 'getTranscript'
-        }).then(renderPopup);
+        }).then(function (response) {
+            document.querySelector('.loading').setAttribute('style', 'display:none');
+
+            if (response.error) {
+                renderError(response.error);
+            }
+
+            renderPopup(response);
+        });
     }, 500);
 
     function showTab() {

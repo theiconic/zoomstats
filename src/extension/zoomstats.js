@@ -15,12 +15,14 @@ const getUrl = (dom) => {
     return undefined;
 }
 
-messenger.initConnection('main', (msg, from, sender, sendResponse) => {
+const connection = messenger.initConnection('main', (msg, from, sender, sendResponse) => {
     if (msg.cmd === 'getTranscript') {
         const url = getUrl(window.document);
 
         if (!url) {
-            sendResponse({});
+            sendResponse({
+                error: 'no-transcript-url'
+            });
             return;
         }
 
@@ -28,6 +30,9 @@ messenger.initConnection('main', (msg, from, sender, sendResponse) => {
             response.text().then(text => sendResponse(parse(text)));
         });
     } else {
-        sendResponse({});
+        sendResponse({
+            error: 'unsupported-command',
+            command: msg.cmd
+        });
     }
 });

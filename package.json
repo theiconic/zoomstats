@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-extension": "node buildExtension.js",
+    "upload-extension": "node uploadExtension.js",
     "test": "jest"
   },
   "author": "Andre Wyrwa",
