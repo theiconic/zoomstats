@@ -1,8 +1,19 @@
+const fs = require('fs');
+const { JSDOM } = require('jsdom');
+
 jest.mock('../analyzer/talktime.js', () => {
     return jest.fn(() => {
         return {
-            'Unknown Speaker': 3600,
-            'Joe Test': 1200
+            'Unknown Speaker': {
+                total: 3600,
+                turns: [3600],
+                humanize: 'a few seconds'
+            },
+            'Joe Test': {
+                total: 1200,
+                turns: [1200],
+                humanized: 'a few seconds'
+            }
         };
     });
 });
@@ -75,29 +86,9 @@ jest.mock('ext-messenger', () => {
 jest.useFakeTimers();
 
 test('popup.js renders popup waits 500ms on window.load event', () => {
-    document.body.innerHTML = '<div>' +
-        '<h3 id="title"></h3>' +
-        '<div class="effectivenessValue"></div>' +
-        '<div class="tabs">' +
-        '<div class="tab active" data-tab="talktimes">Talk times</div>' +
-        '<div class="tab" data-tab="collaboration">Collaboration</div>' +
-        '<div class="tab" data-tab="wordcloud">Wordcloud</div>' +
-        '</div>' +
-        '<div class="tabpanels">' +
-        '<div class="tabpanel talktimes active">' +
-        '<div class="talktime-chart-legend">circumference = turns, depth = average time/turn</div>' +
-        '<div class="talktime-chart"></div>' +
-        '<div class="talktime-list"></div>' +
-        '</div>' +
-        '<div class="tabpanel wordcloud">' +
-        '</div>' +
-        '<div class="tabpanel collaboration">' +
-        '</div>' +
-        '</div>' +
-        '<div class="talktimes"></div>' +
-        '<div class="wordcloud"' +
-        '<div class="collaboration"' +
-    '</div>';
+    const dom = (new JSDOM(fs.readFileSync('./src/extension/popup.html', 'utf-8')));
+
+    window.document.body.innerHTML = dom.window.document.body.innerHTML;
 
     require('./popup.js');
     window.onload();
