@@ -1,6 +1,6 @@
 const extractTalkTimesBy = require('./util/extract-talktimes');
 const getObjectMapper = require('../util/object-map');
-const humanizeTalktime = require('./util/humanize-talktime');
+const humanizeTalktime = require('../renderer/util/humanize-talktime');
 
 module.exports = data => {
     const humanizeTalktimes = getObjectMapper(humanizeTalktime);

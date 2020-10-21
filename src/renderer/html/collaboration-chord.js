@@ -1,7 +1,7 @@
-const { schemeDark2, scaleOrdinal, select, ribbon, arc, descending } = require('d3');
+const { schemeCategory10, scaleOrdinal, select, ribbon, arc, descending } = require('d3');
 const d3Chord = require('./util/d3-chord');
 
-const fill = scaleOrdinal(schemeDark2);
+const fill = scaleOrdinal(schemeCategory10);
 
 const addGradients = (svg, chords, innerRadius) => {
     var grads = svg.append('defs').selectAll('linearGradient')
@@ -72,7 +72,6 @@ const draw = (container, chords, names) => {
         .style('fill', function(d){
             return 'url(#chordGradient-' + d.source.index + '-' + d.target.index + ')';
         })
-//        .style('fill', (d) => fill(d.source.index))
         .style('stroke', 'white');
 
     addGradients(svg, chords, innerRadius);

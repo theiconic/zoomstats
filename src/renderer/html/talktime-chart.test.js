@@ -1,4 +1,4 @@
-const chord = require('./collaboration-chord');
+const chart = require('./talktime-chart');
 
 window.HTMLCanvasElement.prototype.getContext = () => {
     return {
@@ -26,12 +26,30 @@ window.HTMLCanvasElement.prototype.getContext = () => {
 test('calling collaboration-chord returns render function', () => {
     return new Promise((resolve, reject) => {
         const container = document.body;
-        const renderer = chord([[1,2],[3,4],[5,6],[7,8]]);
+        const renderer = chart([{
+            name: 'a',
+            total: 10,
+            turns: [10],
+            humanized: 'a few seconds'
+        },{
+            name: 'b',
+            total: 20,
+            turns: [20],
+            humanized: 'a few seconds'
+        },{
+            name: 'c',
+            total: 30,
+            turns: [30],
+            humanized: 'a few seconds'
+        }]);
         expect(typeof (renderer)).toBe('function');
         renderer(container);
         setTimeout(() => {
             expect(container.firstChild.nodeName).toBe('svg');
-            container.querySelector('g.group').dispatchEvent(new window.MouseEvent('mouseover'));
+            expect(container.querySelector('tspan.name').textContent).toBe('total');
+            expect(container.querySelector('tspan.time').textContent).toBe('a few seconds');
+            expect(container.querySelector('tspan.turns').textContent).toBe('3 turns');
+            expect(container.querySelector('tspan.time-per-turn').textContent).toBe('0.020 s/turn');
             resolve();
         }, 100);
     });
