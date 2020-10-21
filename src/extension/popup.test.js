@@ -85,6 +85,9 @@ test('popup.js renders popup waits 500ms on window.load event', () => {
         '</div>' +
         '<div class="tabpanels">' +
         '<div class="tabpanel talktimes active">' +
+        '<div class="talktime-chart-legend">circumference = turns, depth = average time/turn</div>' +
+        '<div class="talktime-chart"></div>' +
+        '<div class="talktime-list"></div>' +
         '</div>' +
         '<div class="tabpanel wordcloud">' +
         '</div>' +

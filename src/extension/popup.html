@@ -18,14 +18,27 @@
             background: #f4f4f4;
         }
 
-        .talktimes dt,
+        .talktimes dt {
+            width: 40%;
+        }
+
+        .talktimes dt .swatch {
+            padding: 0.5em;
+            display: inline-block;
+            margin-right: 4px;
+        }
+
         .talktimes dd {
-            width: 50%;
+            width: 20%;
         }
 
         .talktimes dt {
             font-weight: bold;
             padding-right: 10px;
+        }
+
+        .talktime-chart-legend {
+            text-align: center;
         }
 
         h3,
@@ -150,6 +163,9 @@
             </div>
             <div class="tabpanels">
                 <div class="tabpanel talktimes active">
+                    <div class="talktime-chart-legend">circumference = turns, depth = average time/turn</div>
+                    <div class="talktime-chart"></div>
+                    <div class="talktime-list"></div>
                 </div>
                 <div class="tabpanel wordcloud">
                 </div>

@@ -8,12 +8,18 @@ test('extract-talktimes by speaker should add talktimes grouped by speaker', () 
         text: 'Hey,'
     })).toEqual(
         {
-            'Unknown Speaker': 510
+            'Unknown Speaker': {
+                total: 510,
+                turns: [510]
+            }
         }
     );
 
     expect(extractTalktimes('speaker')({
-        'Unknown Speaker': 620
+        'Unknown Speaker': {
+            total: 620,
+            turns: [620]
+        }
     }, {
         speaker: 'Unknown Speaker',
         start: 141.24,
@@ -21,12 +27,18 @@ test('extract-talktimes by speaker should add talktimes grouped by speaker', () 
         text: 'Hey,'
     })).toEqual(
         {
-            'Unknown Speaker': 1130
+            'Unknown Speaker': {
+                total: 1130,
+                turns: [620, 510]
+            }
         }
     );
 
     expect(extractTalktimes('speaker')({
-        'Joe Test': 620
+        'Joe Test': {
+            total: 620,
+            turns: [620]
+        }
     }, {
         speaker: 'Unknown Speaker',
         start: 141.24,
@@ -34,8 +46,14 @@ test('extract-talktimes by speaker should add talktimes grouped by speaker', () 
         text: 'Hey,'
     })).toEqual(
         {
-            'Joe Test': 620,
-            'Unknown Speaker': 510
+            'Joe Test': {
+                total: 620,
+                turns: [620]
+            },
+            'Unknown Speaker': {
+                total: 510,
+                turns: [510]
+            }
         }
     );
 });
@@ -48,12 +66,18 @@ test('extract-talktimes by text should add talktimes grouped by text', () => {
         text: 'Hey,'
     })).toEqual(
         {
-            'Hey,': 510
+            'Hey,': {
+                total: 510,
+                turns: [510]
+            }
         }
     );
 
     expect(extractTalktimes('text')({
-        'Hey,': 620
+        'Hey,': {
+            total: 620,
+            turns: [620]
+        }
     }, {
         speaker: 'Unknown Speaker',
         start: 141.24,
@@ -61,12 +85,18 @@ test('extract-talktimes by text should add talktimes grouped by text', () => {
         text: 'Hey,'
     })).toEqual(
         {
-            'Hey,': 1130
+            'Hey,': {
+                total: 1130,
+                turns: [620, 510]
+            }
         }
     );
 
     expect(extractTalktimes('text')({
-        'Hey,': 620
+        'Hey,': {
+            total: 620,
+            turns: [620]
+        }
     }, {
         speaker: 'Unknown Speaker',
         start: 141.24,
@@ -74,38 +104,62 @@ test('extract-talktimes by text should add talktimes grouped by text', () => {
         text: 'Hello.'
     })).toEqual(
         {
-            'Hey,': 620,
-            'Hello.': 510
+            'Hey,': {
+                total: 620,
+                turns: [620]
+            },
+            'Hello.': {
+                total: 510,
+                turns: [510]
+            }
         }
     );
 });
 
 test('extract-talktimes without grouping parameter should add talktime', () => {
-    expect(extractTalktimes()(0, {
+    expect(extractTalktimes()({}, {
         speaker: 'Unknown Speaker',
         start: 141.24,
         end: 141.75,
         text: 'Hey,'
-    })).toEqual(510);
+    })).toStrictEqual({
+        total: 510,
+        turns: [510],
+    });
 
-    expect(extractTalktimes()(620, {
+    expect(extractTalktimes()({
+        total: 620,
+        turns: [620]
+    }, {
         speaker: 'Unknown Speaker',
         start: 141.24,
         end: 141.75,
         text: 'Hey,'
-    })).toEqual(1130);
+    })).toStrictEqual({
+        total: 1130,
+        turns: [620, 510]
+    });
 
-    expect(extractTalktimes()(undefined, {
+    expect(extractTalktimes()({
+        total: 0,
+        turns: []
+    }, {
         speaker: 'Unknown Speaker',
         start: 141.24,
         end: 141.75,
         text: 'Hello.'
-    })).toEqual(510);
+    })).toStrictEqual({
+        total: 510,
+        turns: [510]
+    });
 });
 
 test('extract-talktimes should gracefully handle undefined timestamps', () => {
-    expect(extractTalktimes()(undefined, {
+    expect(extractTalktimes()({}, {
         speaker: 'Unknown Speaker',
         text: 'Hello.'
-    })).toEqual(0);
+    })).toEqual({
+        total: 0,
+        turns: []
+    });
 });

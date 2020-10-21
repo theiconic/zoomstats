@@ -30,7 +30,15 @@ test('talktime analyzer should return talktimes by speaker', () => {
     };
 
     expect(talktime(data)).toEqual({
-        'Joe Test': '5 minutes',
-        'Unknown Speaker': '2 minutes'
+        'Joe Test': {
+            total: 281230,
+            turns: [281230],
+            humanized: '5 minutes'
+        },
+        'Unknown Speaker': {
+            total: 140720,
+            turns: [120510, 20210],
+            humanized: '2 minutes'
+        }
     });
 });
