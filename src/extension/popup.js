@@ -34,7 +34,7 @@ const buildSpeaker = (data) => {
 
     speaker.appendChild(buildSpeakerName(data.name, data.color));
     speaker.appendChild(buildSpeakerTime(data.humanized));
-    speaker.appendChild(buildSpeakerTime(((data.total / 1000) / data.turns.length).toPrecision(2) + ' s/turn'));
+    speaker.appendChild(buildSpeakerTime(Math.round(data.total / 10 / data.turns.length) / 100 + ' s/turn'));
     speaker.appendChild(buildSpeakerTime(data.turns.length + ' turns'));
 
     return speaker;

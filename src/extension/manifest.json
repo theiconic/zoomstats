@@ -3,7 +3,7 @@
 
   "name": "ZoomStats",
   "description": "Derive statistics from zoom session transcripts",
-  "version": "0.6.0",
+  "version": "0.6.1",
 
   "icons": {
     "32": "icon/enabled_32.png",

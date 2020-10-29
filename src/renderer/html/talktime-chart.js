@@ -7,7 +7,7 @@ const radius = 250;
 const arc = d3.arc()
     .innerRadius(innerRadius)
     .outerRadius((d) => {
-        return (radius - innerRadius) * (d.data.timeslice / 100) + innerRadius;
+        return Math.max(2, (radius - innerRadius) * (d.data.timeslice / 100)) + innerRadius;
     });
 
 const draw = (container, pie, summary) => {
@@ -51,7 +51,7 @@ const draw = (container, pie, summary) => {
         .attr("x", 0)
         .attr("y", 0)
         .attr("dy", "4em")
-        .text(((summary.total / 1000) / summary.turns).toPrecision(2) + ' s/turn');
+        .text(Math.round(summary.total / 10 / summary.turns) / 100 + ' s/turn');
 
     const fade = (opacity) => {
         return (d, i) => {
@@ -67,7 +67,7 @@ const draw = (container, pie, summary) => {
         label.select('.name').text(d.data.name);
         label.select('.time').text(d.data.humanized);
         label.select('.turns').text(d.data.turns.length + ' turns');
-        label.select('.time-per-turn').text(((d.data.total / 1000) / d.data.turns.length).toPrecision(2) + ' s/turn');
+        label.select('.time-per-turn').text(Math.round(d.data.total / 10 / d.data.turns.length) / 100 + ' s/turn');
     }
 
     const mouseout = (d, i) => {
@@ -75,7 +75,7 @@ const draw = (container, pie, summary) => {
         label.select('.name').text('total');
         label.select('.time').text(summary.humanized);
         label.select('.turns').text(summary.turns + ' turns');
-        label.select('.time-per-turn').text(((summary.total / 1000) / summary.turns).toPrecision(2) + ' s/turn');
+        label.select('.time-per-turn').text(Math.round(summary.total / 10 / summary.turns) / 100 + ' s/turn');
     }
 
     const path = svg.selectAll(".solidArc")

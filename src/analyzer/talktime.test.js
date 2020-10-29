@@ -25,7 +25,13 @@ test('talktime analyzer should return talktimes by speaker', () => {
                     start: 308.24,
                     end: 589.47,
                     text: '...'
-                }
+                },
+                {
+                    speaker: 'Unknown Speaker',
+                    start: 310.2,
+                    end: 315.0,
+                    text: '...'
+                },
             ]
     };
 
@@ -36,8 +42,8 @@ test('talktime analyzer should return talktimes by speaker', () => {
             humanized: '5 minutes'
         },
         'Unknown Speaker': {
-            total: 140720,
-            turns: [120510, 20210],
+            total: 145520,
+            turns: [140720, 4800],
             humanized: '2 minutes'
         }
     });

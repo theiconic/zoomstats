@@ -4,7 +4,8 @@ const humanizeTalktime = require('../renderer/util/humanize-talktime');
 
 module.exports = data => {
     const humanizeTalktimes = getObjectMapper(humanizeTalktime);
-    const stats = data.transcript.reduce(extractTalkTimesBy('speaker'), {});
+    const bySpeaker = extractTalkTimesBy('speaker');
+    const stats = data.transcript.reduce(bySpeaker, {});
 
     return humanizeTalktimes(stats);
 }

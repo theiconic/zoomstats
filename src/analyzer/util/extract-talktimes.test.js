@@ -1,7 +1,8 @@
 const extractTalktimes = require('./extract-talktimes');
 
 test('extract-talktimes by speaker should add talktimes grouped by speaker', () => {
-    expect(extractTalktimes('speaker')({}, {
+    const bySpeaker = extractTalktimes('speaker');
+    expect(bySpeaker({}, {
         speaker: 'Unknown Speaker',
         start: 141.24,
         end: 141.75,
@@ -15,7 +16,7 @@ test('extract-talktimes by speaker should add talktimes grouped by speaker', () 
         }
     );
 
-    expect(extractTalktimes('speaker')({
+    expect(bySpeaker({
         'Unknown Speaker': {
             total: 620,
             turns: [620]
@@ -29,12 +30,12 @@ test('extract-talktimes by speaker should add talktimes grouped by speaker', () 
         {
             'Unknown Speaker': {
                 total: 1130,
-                turns: [620, 510]
+                turns: [1130]
             }
         }
     );
 
-    expect(extractTalktimes('speaker')({
+    expect(bySpeaker({
         'Joe Test': {
             total: 620,
             turns: [620]
@@ -59,7 +60,8 @@ test('extract-talktimes by speaker should add talktimes grouped by speaker', () 
 });
 
 test('extract-talktimes by text should add talktimes grouped by text', () => {
-    expect(extractTalktimes('text')({}, {
+    const byText =  extractTalktimes('text');
+    expect(byText({}, {
         speaker: 'Unknown Speaker',
         start: 141.24,
         end: 141.75,
@@ -73,7 +75,7 @@ test('extract-talktimes by text should add talktimes grouped by text', () => {
         }
     );
 
-    expect(extractTalktimes('text')({
+    expect(byText({
         'Hey,': {
             total: 620,
             turns: [620]
@@ -87,12 +89,12 @@ test('extract-talktimes by text should add talktimes grouped by text', () => {
         {
             'Hey,': {
                 total: 1130,
-                turns: [620, 510]
+                turns: [1130]
             }
         }
     );
 
-    expect(extractTalktimes('text')({
+    expect(byText({
         'Hey,': {
             total: 620,
             turns: [620]
@@ -117,7 +119,8 @@ test('extract-talktimes by text should add talktimes grouped by text', () => {
 });
 
 test('extract-talktimes without grouping parameter should add talktime', () => {
-    expect(extractTalktimes()({}, {
+    const ungrouped = extractTalktimes();
+    expect(ungrouped({}, {
         speaker: 'Unknown Speaker',
         start: 141.24,
         end: 141.75,
@@ -127,7 +130,7 @@ test('extract-talktimes without grouping parameter should add talktime', () => {
         turns: [510],
     });
 
-    expect(extractTalktimes()({
+    expect(ungrouped({
         total: 620,
         turns: [620]
     }, {
@@ -137,10 +140,10 @@ test('extract-talktimes without grouping parameter should add talktime', () => {
         text: 'Hey,'
     })).toStrictEqual({
         total: 1130,
-        turns: [620, 510]
+        turns: [1130]
     });
 
-    expect(extractTalktimes()({
+    expect(ungrouped({
         total: 0,
         turns: []
     }, {

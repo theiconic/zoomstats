@@ -49,7 +49,7 @@ test('calling collaboration-chord returns render function', () => {
             expect(container.querySelector('tspan.name').textContent).toBe('total');
             expect(container.querySelector('tspan.time').textContent).toBe('a few seconds');
             expect(container.querySelector('tspan.turns').textContent).toBe('3 turns');
-            expect(container.querySelector('tspan.time-per-turn').textContent).toBe('0.020 s/turn');
+            expect(container.querySelector('tspan.time-per-turn').textContent).toBe('0.02 s/turn');
             resolve();
         }, 100);
     });
