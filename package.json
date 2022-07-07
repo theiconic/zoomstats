@@ -19,7 +19,7 @@
     "d3": "^5.8.0",
     "d3-cloud": "^1.2.5",
     "ext-messenger": "^3.0.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "node-webvtt": "^1.9.3",
     "split-to-words": "^1.0.2",
     "stopword": "^1.0.3"
